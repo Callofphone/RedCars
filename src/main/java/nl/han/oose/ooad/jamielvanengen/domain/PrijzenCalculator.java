@@ -7,14 +7,14 @@ import java.util.concurrent.TimeUnit;
 
 public class PrijzenCalculator {
 
-    private PrijzenLijstFactory prijzenLijstFactory;
+    private PrijzenLijstBuilder prijzenLijstBuilder;
 
     public PrijzenCalculator() {
-        prijzenLijstFactory = new PrijzenLijstFactory();
+        prijzenLijstBuilder = new PrijzenLijstBuilder();
     }
 
 	public float berekenPrijs(Rit rit, Calendar boekingEindTijd,  AutoTypes autoType, Abonnement abonnement, float aantalKilometers) {
-        PrijzenLijst prijzenLijst = prijzenLijstFactory.buildPrijzenLijst(abonnement, autoType);
+        PrijzenLijst prijzenLijst = prijzenLijstBuilder.buildPrijzenLijst(abonnement, autoType);
         float prijs = getKostenPerTypeAutoEnAbonnement(rit, prijzenLijst);
         if (rit.getEindtijd().getTime().getTime() > boekingEindTijd.getTime().getTime()) {
             long overschrijdingTijd = boekingEindTijd.getTime().getTime() - rit.getEindtijd().getTime().getTime();

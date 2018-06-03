@@ -4,11 +4,11 @@ public class Auto {
 
 	private String kenteken;
 
-	private String standplaats;
+	private Plaats standplaats;
 
 	private AutoTypes type;
 
-    public Auto(String kenteken, String standplaats, AutoTypes type) {
+    public Auto(String kenteken, Plaats standplaats, AutoTypes type) {
         this.kenteken = kenteken;
         this.standplaats = standplaats;
         this.type = type;

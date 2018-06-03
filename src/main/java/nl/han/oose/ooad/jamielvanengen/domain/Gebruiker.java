@@ -43,7 +43,7 @@ public class Gebruiker {
                 new Boeking(
                         new GregorianCalendar(2017, Calendar.OCTOBER, 28),
                         new GregorianCalendar(2017, Calendar.NOVEMBER, 2),
-                        new Auto("ABC-42-123", "Arnhmem", AutoTypes.Personenauto)));
+                        new Auto("ABC-42-123", new Plaats("Arnhem"), AutoTypes.Personenauto)));
     }
 
 
@@ -53,5 +53,23 @@ public class Gebruiker {
 
     public String getRekeningnummer() {
         return rekeningnummer;
+    }
+
+    public void reserveer(Boeking boeking) {
+        if (!this.doesBoekingOverlap(boeking)) {
+            addBoeking(boeking);
+        }
+    }
+
+    private boolean doesBoekingOverlap(Boeking boeking) {
+        boolean overlaps = false;
+        for (Boeking boekingInArrayList : boekingen) {
+            overlaps = !boeking.getBegintijd().after(boekingInArrayList.getEindtijd()) && !boekingInArrayList.getBegintijd().after(boeking.getEindtijd());
+        }
+        return overlaps;
+    }
+
+    public void addBoeking(Boeking boeking) {
+        boekingen.add(boeking);
     }
 }

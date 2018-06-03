@@ -2,7 +2,7 @@ package nl.han.oose.ooad.jamielvanengen.domain;
 
 import nl.han.oose.ooad.jamielvanengen.domain.abbonement.Abonnement;
 
-public class PrijzenLijstFactory {
+public class PrijzenLijstBuilder {
     public PrijzenLijst buildPrijzenLijst(Abonnement abonnement, AutoTypes autoType) {
         switch (abonnement.getType()) {
             case Gratis:
